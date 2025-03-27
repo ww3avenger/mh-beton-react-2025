@@ -103,19 +103,74 @@ const LogoContainer = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
-  padding: 16px;
+  padding: 24px 20px;
   background: rgba(0, 0, 0, 0.25);
   backdrop-filter: blur(8px);
-  width: 240px;
-  border: 2px solid #3498db;
+  width: 260px;
   border-radius: 8px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
   margin: 0 auto;
+  overflow: hidden;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    opacity: 0.95;
+  }
+
+  &::before {
+    top: 0;
+    left: 0;
+    border-top: 3px solid #3498db;
+    border-left: 3px solid #3498db;
+    animation: drawBorderTL 1.5s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+  }
+
+  &::after {
+    bottom: 0;
+    right: 0;
+    border-bottom: 3px solid #3498db;
+    border-right: 3px solid #3498db;
+    animation: drawBorderBR 1.5s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+  }
 
   @media (max-width: 480px) {
-    width: 220px;
-    padding: 12px;
+    width: 240px;
+    padding: 20px 16px;
+  }
+
+  @keyframes drawBorderTL {
+    0% {
+      width: 0;
+      height: 0;
+    }
+    50% {
+      width: 100%;
+      height: 0;
+    }
+    100% {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  @keyframes drawBorderBR {
+    0% {
+      width: 0;
+      height: 0;
+    }
+    50% {
+      width: 100%;
+      height: 0;
+    }
+    100% {
+      width: 100%;
+      height: 100%;
+    }
   }
 
   @keyframes drawBorderTL {
@@ -150,10 +205,10 @@ const LogoContainer = styled.div`
 `;
 
 const Title = styled.h1`
-  font-size: 32px;
+  font-size: 38px;
   font-weight: 800;
   margin: 0;
-  padding: 0;
+  padding: 0 8px;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
   color: #3498db;
   letter-spacing: 0.05em;
@@ -162,24 +217,26 @@ const Title = styled.h1`
   text-align: center;
   width: 100%;
   white-space: normal;
+  word-spacing: 0.1em;
   
   @media (max-width: 768px) {
-    font-size: 28px;
+    font-size: 34px;
   }
 
   @media (max-width: 480px) {
-    font-size: 24px;
+    font-size: 30px;
+    padding: 0 4px;
   }
 `;
 
 const Subtitle = styled.p`
-  font-size: 14px;
+  font-size: 16px;
   max-width: 800px;
-  margin: 1rem auto;
+  margin: 1.2rem auto 0.8rem;
   line-height: 1.4;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
   color: white;
-  padding: 0;
+  padding: 0 12px;
   text-align: center;
   
   @media (max-width: 768px) {
