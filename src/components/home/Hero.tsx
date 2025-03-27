@@ -52,7 +52,7 @@ const ContentContainer = styled.div`
   position: relative;
   z-index: 3;
   width: 100%;
-  padding: 0 16px;
+  padding: 0;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -118,10 +118,10 @@ const LogoContainer = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
-  padding: 24px 32px 28px;
+  padding: 24px 40px 28px;
   background: rgba(0, 0, 0, 0.25);
   backdrop-filter: blur(8px);
-  width: 340px;
+  width: 380px;
   border-radius: 8px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
@@ -154,13 +154,13 @@ const LogoContainer = styled.div`
   }
 
   @media (max-width: 480px) {
-    width: 320px;
-    padding: 20px 24px 24px;
+    width: 340px;
+    padding: 20px 32px 24px;
   }
   
   @media (max-width: 360px) {
-    width: 300px;
-    padding: 20px 20px 24px;
+    width: 320px;
+    padding: 20px 28px 24px;
   }
 
   @keyframes drawBorderTL {
@@ -225,19 +225,19 @@ const LogoContainer = styled.div`
 `;
 
 const Title = styled.h1`
-  font-size: 42px;
+  font-size: 44px;
   font-weight: 800;
   margin: 0;
-  padding: 0 12px;
+  padding: 0;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
   color: #3498db;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   line-height: 1;
   font-family: 'Arial Black', Helvetica, sans-serif;
   text-align: center;
   width: 100%;
   white-space: normal;
-  word-spacing: 0.15em;
+  word-spacing: 0.2em;
   
   @media (max-width: 768px) {
     font-size: 34px;
