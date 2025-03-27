@@ -69,20 +69,30 @@ const HeroContent = styled.div`
 `;
 
 const Slogan = styled.div`
-  font-size: clamp(1rem, 2vw, 1.3rem);
+  font-size: 16px;
   font-weight: 500;
-  margin-top: 1rem;
+  margin-top: 1.2rem;
+  margin-bottom: 0.3rem;
   background: linear-gradient(120deg, #3498db, #2980b9);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  letter-spacing: 3px;
+  letter-spacing: 2px;
   text-transform: uppercase;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
   white-space: nowrap;
-  padding: 0.3rem 0.5rem;
+  padding: 0.3rem;
   font-family: 'Arial', sans-serif;
   position: relative;
+  width: 100%;
+  text-align: center;
+
+  @media (max-width: 480px) {
+    font-size: 14px;
+    letter-spacing: 1.5px;
+    margin-top: 1rem;
+    padding: 0.2rem;
+  }
   
   &::after {
     content: '';
@@ -103,15 +113,15 @@ const LogoContainer = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
-  padding: 24px 20px;
+  padding: 24px 16px 20px;
   background: rgba(0, 0, 0, 0.25);
   backdrop-filter: blur(8px);
-  width: 260px;
+  width: 300px;
   border-radius: 8px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
   margin: 0 auto;
-  overflow: hidden;
+  overflow: visible;
 
   &::before,
   &::after {
@@ -139,8 +149,8 @@ const LogoContainer = styled.div`
   }
 
   @media (max-width: 480px) {
-    width: 240px;
-    padding: 20px 16px;
+    width: 280px;
+    padding: 20px 12px 16px;
   }
 
   @keyframes drawBorderTL {
