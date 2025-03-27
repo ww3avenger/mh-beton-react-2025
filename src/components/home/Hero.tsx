@@ -52,7 +52,7 @@ const ContentContainer = styled.div`
   position: relative;
   z-index: 3;
   width: 100%;
-  max-width: 400px;
+  max-width: 280px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -215,7 +215,7 @@ const LogoContainer = styled.div`
 `;
 
 const Title = styled.h1`
-  font-size: 42px;
+  font-size: 32px;
   font-weight: 800;
   margin: 0;
   padding: 0;
@@ -229,22 +229,22 @@ const Title = styled.h1`
   white-space: normal;
   
   @media (max-width: 768px) {
-    font-size: 36px;
+    font-size: 28px;
   }
 
   @media (max-width: 480px) {
-    font-size: 32px;
+    font-size: 24px;
   }
 `;
 
 const Subtitle = styled.p`
-  font-size: min(2.5vw, 1.2rem);
+  font-size: 14px;
   max-width: 800px;
-  margin: 1.5rem auto;
-  line-height: 1.6;
+  margin: 1rem auto;
+  line-height: 1.4;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
   color: white;
-  padding: 0 1rem;
+  padding: 0;
   text-align: center;
   
   @media (max-width: 768px) {
