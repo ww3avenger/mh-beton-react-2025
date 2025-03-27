@@ -52,7 +52,7 @@ const ContentContainer = styled.div`
   position: relative;
   z-index: 3;
   width: 100%;
-  max-width: 280px;
+  padding: 0 16px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -65,16 +65,7 @@ const HeroContent = styled.div`
   text-align: center;
   color: white;
   width: 100%;
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeInUp 1s ease forwards;
-
-  @keyframes fadeInUp {
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
+  opacity: 1;
 `;
 
 const Slogan = styled.div`
@@ -112,75 +103,19 @@ const LogoContainer = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
-  padding: 20px;
+  padding: 16px;
   background: rgba(0, 0, 0, 0.25);
   backdrop-filter: blur(8px);
-  width: 100%;
+  width: 240px;
+  border: 2px solid #3498db;
   border-radius: 8px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
-
-  @media (max-width: 768px) {
-    padding: 16px;
-  }
+  margin: 0 auto;
 
   @media (max-width: 480px) {
+    width: 220px;
     padding: 12px;
-  }
-  
-  @keyframes float {
-    0% {
-      transform: translateY(0px);
-    }
-    50% {
-      transform: translateY(-10px);
-    }
-    100% {
-      transform: translateY(0px);
-    }
-  }
-
-  &:hover {
-    background: rgba(0, 0, 0, 0.3);
-    box-shadow: 0 0 30px rgba(52, 152, 219, 0.3);
-    transform: scale(1.02);
-
-    &::before,
-    &::after {
-      box-shadow: 0 0 15px rgba(52, 152, 219, 0.5);
-    }
-
-    ${Slogan} {
-      &::after {
-        width: 80%;
-      }
-    }
-  }
-  
-  &::before,
-  &::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 0;
-    opacity: 0.95;
-    transition: box-shadow 0.3s ease;
-  }
-
-  &::before {
-    top: 0;
-    left: 0;
-    border-top: 4px solid #3498db;
-    border-left: 4px solid #3498db;
-    animation: drawBorderTL 1.5s cubic-bezier(0.19, 1, 0.22, 1) forwards 0.3s;
-  }
-
-  &::after {
-    bottom: 0;
-    right: 0;
-    border-bottom: 4px solid #3498db;
-    border-right: 4px solid #3498db;
-    animation: drawBorderBR 1.5s cubic-bezier(0.19, 1, 0.22, 1) forwards 0.3s;
   }
 
   @keyframes drawBorderTL {
