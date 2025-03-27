@@ -69,29 +69,34 @@ const HeroContent = styled.div`
 `;
 
 const Slogan = styled.div`
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 500;
-  margin-top: 1.2rem;
-  margin-bottom: 0.3rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
   background: linear-gradient(120deg, #3498db, #2980b9);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  letter-spacing: 2px;
+  letter-spacing: 1.8px;
   text-transform: uppercase;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
-  white-space: nowrap;
+  white-space: normal;
   padding: 0.3rem;
   font-family: 'Arial', sans-serif;
   position: relative;
   width: 100%;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
 
   @media (max-width: 480px) {
-    font-size: 14px;
-    letter-spacing: 1.5px;
-    margin-top: 1rem;
+    font-size: 13px;
+    letter-spacing: 1.2px;
+    margin-top: 1.2rem;
     padding: 0.2rem;
+    gap: 1px;
   }
   
   &::after {
@@ -113,10 +118,10 @@ const LogoContainer = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
-  padding: 24px 16px 20px;
+  padding: 24px 32px 28px;
   background: rgba(0, 0, 0, 0.25);
   backdrop-filter: blur(8px);
-  width: 300px;
+  width: 340px;
   border-radius: 8px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
@@ -149,8 +154,13 @@ const LogoContainer = styled.div`
   }
 
   @media (max-width: 480px) {
-    width: 280px;
-    padding: 20px 12px 16px;
+    width: 320px;
+    padding: 20px 24px 24px;
+  }
+  
+  @media (max-width: 360px) {
+    width: 300px;
+    padding: 20px 20px 24px;
   }
 
   @keyframes drawBorderTL {
@@ -215,19 +225,19 @@ const LogoContainer = styled.div`
 `;
 
 const Title = styled.h1`
-  font-size: 38px;
+  font-size: 42px;
   font-weight: 800;
   margin: 0;
-  padding: 0 8px;
+  padding: 0 12px;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
   color: #3498db;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.08em;
   line-height: 1;
   font-family: 'Arial Black', Helvetica, sans-serif;
   text-align: center;
   width: 100%;
   white-space: normal;
-  word-spacing: 0.1em;
+  word-spacing: 0.15em;
   
   @media (max-width: 768px) {
     font-size: 34px;
@@ -305,6 +315,7 @@ const ScrollIndicator = styled.div`
 `;
 
 const Hero: React.FC = () => {
+  const sloganParts = ['FÜR JEDEN BAU', 'DAS RICHTIGE FUNDAMENT'];
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const [isVideoEnding, setIsVideoEnding] = useState(false);
 
@@ -355,7 +366,11 @@ const Hero: React.FC = () => {
         <HeroContent>
           <LogoContainer>
             <Title data-text="MH BETON">MH BETON</Title>
-            <Slogan>Für jeden Bau das richtige Fundament</Slogan>
+            <Slogan>
+          {sloganParts.map((part, index) => (
+            <span key={index}>{part}</span>
+          ))}
+        </Slogan>
           </LogoContainer>
           <Subtitle>
             Professionelle Betonlösungen für anspruchsvolle Projekte in Wien und Umgebung
