@@ -36,8 +36,8 @@ const SectionTitle = styled.div`
 
 const GalleryGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.6s ease 0.2s, transform 0.6s ease 0.2s;
@@ -45,6 +45,11 @@ const GalleryGrid = styled.div`
   &.visible {
     opacity: 1;
     transform: translateY(0);
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
   }
 `;
 
@@ -56,48 +61,36 @@ const GalleryItem = styled.div`
   cursor: pointer;
   background: #e9ecef;
   
-  &:hover img {
-    transform: scale(1.05);
-  }
-
-  &::before {
+  &::after {
     content: '';
     position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 30px;
-    height: 30px;
-    border: 3px solid #3498db;
-    border-radius: 50%;
-    border-top-color: transparent;
-    animation: spin 1s linear infinite;
-    transform: translate(-50%, -50%);
-    z-index: 1;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  &:hover {
+    &::after {
+      opacity: 1;
+    }
+    img {
+      transform: scale(1.05);
+    }
   }
 
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.3s ease, opacity 0.3s ease;
-    opacity: 0;
-    position: relative;
-    z-index: 2;
-    
-    &.loaded {
-      opacity: 1;
-    }
-  }
-
-  @keyframes spin {
-    to {
-      transform: translate(-50%, -50%) rotate(360deg);
-    }
+    transition: transform 0.3s ease;
+    transform-origin: center;
+    background: #e9ecef;
   }
 `;
 
 const References = () => {
-  const [loadedImages, setLoadedImages] = useState<Set<number>>(new Set());
+
   const [titleRef, titleInView] = useInView({
     triggerOnce: true,
     threshold: 0.2,
@@ -146,9 +139,8 @@ const References = () => {
               <img 
                 src={image.src} 
                 alt={image.alt} 
-                loading="lazy" 
-                onLoad={() => setLoadedImages(prev => new Set([...prev, index]))}
-                className={loadedImages.has(index) ? 'loaded' : ''}
+                loading="eager" 
+                decoding="async"
               />
             </GalleryItem>
           ))}
