@@ -54,20 +54,50 @@ const GalleryItem = styled.div`
   overflow: hidden;
   border-radius: 8px;
   cursor: pointer;
+  background: #e9ecef;
   
   &:hover img {
     transform: scale(1.05);
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 30px;
+    height: 30px;
+    border: 3px solid #3498db;
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: spin 1s linear infinite;
+    transform: translate(-50%, -50%);
+    z-index: 1;
   }
 
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    opacity: 0;
+    position: relative;
+    z-index: 2;
+    
+    &.loaded {
+      opacity: 1;
+    }
+  }
+
+  @keyframes spin {
+    to {
+      transform: translate(-50%, -50%) rotate(360deg);
+    }
   }
 `;
 
 const References = () => {
+  const [loadedImages, setLoadedImages] = useState<Set<number>>(new Set());
   const [titleRef, titleInView] = useInView({
     triggerOnce: true,
     threshold: 0.2,
@@ -113,7 +143,13 @@ const References = () => {
         <GalleryGrid ref={gridRef} className={gridInView ? 'visible' : ''}>
           {images.map((image, index) => (
             <GalleryItem key={index} onClick={() => openLightbox(index)}>
-              <img src={image.src} alt={image.alt} loading="lazy" />
+              <img 
+                src={image.src} 
+                alt={image.alt} 
+                loading="lazy" 
+                onLoad={() => setLoadedImages(prev => new Set([...prev, index]))}
+                className={loadedImages.has(index) ? 'loaded' : ''}
+              />
             </GalleryItem>
           ))}
         </GalleryGrid>
