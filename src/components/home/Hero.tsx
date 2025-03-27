@@ -5,20 +5,16 @@ const HeroSection = styled.section`
   position: relative;
   height: 100vh;
   width: 100%;
-  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0;
-  padding: 0;
-  
-  @supports (-webkit-touch-callout: none) {
-    height: -webkit-fill-available;
-    min-height: -webkit-fill-available;
-  }
+  padding: 16px;
+  box-sizing: border-box;
   
   @media (max-width: 768px) {
-    height: 100%;
+    padding: 16px;
+    height: 100vh;
     min-height: 100vh;
   }
 `;
@@ -56,9 +52,8 @@ const ContentContainer = styled.div`
   position: relative;
   z-index: 3;
   width: 100%;
-  max-width: 800px;
+  max-width: 400px;
   margin: 0 auto;
-  padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -117,25 +112,20 @@ const LogoContainer = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
-  padding: 24px 16px;
+  padding: 20px;
   background: rgba(0, 0, 0, 0.25);
   backdrop-filter: blur(8px);
-  width: 300px;
-  max-width: 80%;
+  width: 100%;
   border-radius: 8px;
-  overflow: visible;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  margin: 20px auto;
   box-sizing: border-box;
 
   @media (max-width: 768px) {
-    width: 280px;
-    padding: 20px 12px;
+    padding: 16px;
   }
 
   @media (max-width: 480px) {
-    width: 260px;
-    padding: 16px 10px;
+    padding: 12px;
   }
   
   @keyframes float {
@@ -225,7 +215,7 @@ const LogoContainer = styled.div`
 `;
 
 const Title = styled.h1`
-  font-size: 3.5rem;
+  font-size: 42px;
   font-weight: 800;
   margin: 0;
   padding: 0;
@@ -236,16 +226,14 @@ const Title = styled.h1`
   font-family: 'Arial Black', Helvetica, sans-serif;
   text-align: center;
   width: 100%;
-  display: block;
-  word-break: break-word;
-  hyphens: auto;
+  white-space: normal;
   
   @media (max-width: 768px) {
-    font-size: 2.8rem;
+    font-size: 36px;
   }
 
   @media (max-width: 480px) {
-    font-size: 2.2rem;
+    font-size: 32px;
   }
 `;
 
