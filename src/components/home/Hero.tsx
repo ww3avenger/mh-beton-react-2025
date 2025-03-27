@@ -4,13 +4,23 @@ import styled from 'styled-components';
 const HeroSection = styled.section`
   position: relative;
   height: 100vh;
-  width: 100vw;
+  width: 100%;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0;
   padding: 0;
+  
+  @supports (-webkit-touch-callout: none) {
+    height: -webkit-fill-available;
+    min-height: -webkit-fill-available;
+  }
+  
+  @media (max-width: 768px) {
+    height: 100%;
+    min-height: 100vh;
+  }
 `;
 
 const VideoContainer = styled.div`
@@ -46,13 +56,14 @@ const ContentContainer = styled.div`
   position: relative;
   z-index: 3;
   width: 100%;
-  max-width: 1200px;
+  max-width: 800px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  box-sizing: border-box;
 `;
 
 const HeroContent = styled.div`
@@ -104,17 +115,28 @@ const LogoContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   position: relative;
-  padding: 2.5rem 1rem;
-  margin-top: clamp(2rem, 10vh, 5rem);
+  padding: 24px 16px;
   background: rgba(0, 0, 0, 0.25);
   backdrop-filter: blur(8px);
-  width: fit-content;
-  margin-left: auto;
-  margin-right: auto;
-  border-radius: 4px;
-  animation: float 6s ease-in-out infinite;
-  transition: all 0.3s ease;
+  width: 300px;
+  max-width: 80%;
+  border-radius: 8px;
+  overflow: visible;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  margin: 20px auto;
+  box-sizing: border-box;
+
+  @media (max-width: 768px) {
+    width: 280px;
+    padding: 20px 12px;
+  }
+
+  @media (max-width: 480px) {
+    width: 260px;
+    padding: 16px 10px;
+  }
   
   @keyframes float {
     0% {
@@ -203,25 +225,45 @@ const LogoContainer = styled.div`
 `;
 
 const Title = styled.h1`
-  font-size: clamp(3rem, 10vw, 6rem);
+  font-size: 3.5rem;
   font-weight: 800;
   margin: 0;
-  padding: 0 0.3rem;
+  padding: 0;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
   color: #3498db;
-  letter-spacing: 1px;
-  line-height: 0.9;
+  letter-spacing: 0.05em;
+  line-height: 1;
   font-family: 'Arial Black', Helvetica, sans-serif;
-  white-space: nowrap;
+  text-align: center;
+  width: 100%;
+  display: block;
+  word-break: break-word;
+  hyphens: auto;
+  
+  @media (max-width: 768px) {
+    font-size: 2.8rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 2.2rem;
+  }
 `;
 
 const Subtitle = styled.p`
-  font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+  font-size: min(2.5vw, 1.2rem);
   max-width: 800px;
-  margin: 3rem auto 2rem;
-  line-height: 1.5;
+  margin: 1.5rem auto;
+  line-height: 1.6;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
   color: white;
+  padding: 0 1rem;
+  text-align: center;
+  
+  @media (max-width: 768px) {
+    font-size: 1rem;
+    margin: 1rem auto;
+    padding: 0 0.5rem;
+  }
 `;
 
 const CTAButton = styled.button`
@@ -328,7 +370,12 @@ const Hero: React.FC = () => {
           <Subtitle>
             Professionelle Betonlösungen für anspruchsvolle Projekte in Wien und Umgebung
           </Subtitle>
-          <CTAButton onClick={() => document.getElementById('kontakt')?.scrollIntoView({ behavior: 'smooth' })}>
+          <CTAButton onClick={() => {
+            const kontaktSection = document.querySelector('.kontakt-section');
+            if (kontaktSection) {
+              kontaktSection.scrollIntoView({ behavior: 'smooth' });
+            }
+          }}>
             Jetzt Anfragen
           </CTAButton>
         </HeroContent>

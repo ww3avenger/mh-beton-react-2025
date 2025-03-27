@@ -9,6 +9,7 @@ const KontaktContainer = styled.div`
   padding: 6rem 2rem 2rem;
   max-width: 800px;
   margin: 0 auto;
+  scroll-margin-top: 80px;
 `;
 
 const ContactForm = styled.form`
@@ -176,7 +177,7 @@ const Kontakt: React.FC = () => {
   };
 
   return (
-    <KontaktContainer>
+    <KontaktContainer className="kontakt-section">
       <h1>Kontaktieren Sie uns</h1>
       
       <ContactInfo>
